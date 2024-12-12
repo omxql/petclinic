@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
         - name: workload
-          image: dsyer/petclinic
+          image: docker.io/rajsomesetty/opsmx-petclinic-pr:38-dev
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: postgres
