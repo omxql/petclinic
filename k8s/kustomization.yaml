@@ -5,4 +5,4 @@ resources:
 - petclinic.yml
 images:
 - name: docker.io/rajsomesetty/petclinic-pr
-  newTag: "43"
+  tag: "43"
