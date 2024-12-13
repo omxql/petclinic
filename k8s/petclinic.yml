@@ -48,23 +48,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: mypostgres
             - name: POSTGRES_URL
-              value: >-
-                jdbc:postgresql://$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)
-            - name: POSTGRES_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: host
-            - name: POSTGRES_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: port
-            - name: POSTGRES_DB
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: database
+              value: jdbc:postgresql://demo-db:5432/petclinic
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
