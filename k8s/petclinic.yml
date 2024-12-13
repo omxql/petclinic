@@ -27,7 +27,6 @@ metadata:
     app: petclinic
   annotations:
     argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/petclinic-pr"
-#    argocd-image-updater.argoproj.io/app1-selector: "app=petclinic"
     argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
     argocd-image-updater.argoproj.io/app1.ignore-tags: latest, master
     argocd-image-updater.argoproj.io/write-back-method: git
@@ -44,15 +43,12 @@ spec:
     spec:
       containers:
         - name: workload
-          image: docker.io/rajsomesetty/petclinic-pr:41-dev
+          image: docker.io/rajsomesetty/petclinic-pr:46-dev
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: mypostgres
             - name: POSTGRES_URL
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: host
+              value: jdbc:postgresql://demo-db:5432/petclinic
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -91,4 +87,3 @@ spec:
             sources:
               - secret:
                   name: demo-db
-
