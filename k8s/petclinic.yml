@@ -43,7 +43,7 @@ spec:
     spec:
       containers:
         - name: workload
-          image: petclinic-pr:48-critical
+          image: docker.io/rajsomesetty/petclinic-pr:48-critical
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: mypostgres
