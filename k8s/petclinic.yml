@@ -25,6 +25,13 @@ metadata:
   name: petclinic
   labels:
     app: petclinic
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/opsmx-petclinic-pr"
+    argocd-image-updater.argoproj.io/app1-selector: "app=petclinic"
+    argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
+    argocd-image-updater.argoproj.io/app1.ignore-tags: latest, master, dev
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/pull-policy: Always
 spec:
   replicas: 1
   selector:
