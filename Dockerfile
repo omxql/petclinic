@@ -11,6 +11,9 @@ WORKDIR /app
 ##cp -v ./target/spring-petclinic-*.jar ./target/spring-petclinic.jar
 ##java -Djava.security.egd=file:/dev/./urandom -jar ./target/spring-petclinic.jar
 
-COPY  ./target/spring-petclinic.jar  /spring-petclinic.jar
+RUN ls -l /
+COPY  target/spring-petclinic.jar  /spring-petclinic.jar
+RUN ls -l /
+
 EXPOSE 8080
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-petclinic.jar"]
