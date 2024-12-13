@@ -1,8 +1,8 @@
 # Use a base image with Java runtime
-#FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk-alpine #Non-critical
 #FROM bellsoft/liberica-openjre-alpine-musl:17
 
-FROM eclipse-temurin:21-jdk-jammy
+#FROM eclipse-temurin:21-jdk-jammy
  
 WORKDIR /app
 
