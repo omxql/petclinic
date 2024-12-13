@@ -5,4 +5,4 @@ resources:
 - petclinic.yml
 images:
 - name: docker.io/rajsomesetty/petclinic-pr
-  newTag: 52-nocritical
+  newTag: 54-nocritical
