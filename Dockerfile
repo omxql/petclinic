@@ -11,6 +11,6 @@ COPY mvnw pom.xml ./
 COPY src ./src
 RUN  ./mvnw package
 EXPOSE 8080
-COPY ./target/spring-petclinic-*.jar /spring-petclinic.jar
+RUN cp -v ./target/spring-petclinic-*.jar /spring-petclinic.jar && ls -l /spring-petclinic.jar
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-petclinic.jar"]
 
