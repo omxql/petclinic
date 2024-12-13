@@ -26,7 +26,7 @@ metadata:
   labels:
     app: petclinic
   annotations:
-    argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/opsmx-petclinic-pr"
+    argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/petclinic-pr"
     argocd-image-updater.argoproj.io/app1-selector: "app=petclinic"
     argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
     argocd-image-updater.argoproj.io/app1.ignore-tags: latest, master, dev
@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
         - name: workload
-          image: docker.io/rajsomesetty/opsmx-petclinic-pr:40-dev
+          image: docker.io/rajsomesetty/petclinic-pr:40-dev
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: postgres
