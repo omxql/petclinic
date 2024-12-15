@@ -1,4 +1,4 @@
-// Check PR Jenkins build is triggered or not
+// Checking if PR is updated for code commit and if Jenkins build is triggered
 pipeline {
     agent {
         node {
