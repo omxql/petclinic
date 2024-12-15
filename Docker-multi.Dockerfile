@@ -37,6 +37,9 @@ WORKDIR /app
 # Copy the built JAR from the build stage
 COPY --from=build /app/spring-petclinic.jar /app/spring-petclinic.jar
 
+#ARG CACHEBUST=001
+RUN echo "Arg CACHEBUST effects change in the imageSha. CACHEBUST=$CACHEBUST"
+
 # Expose the port for the application
 EXPOSE 8080
 
