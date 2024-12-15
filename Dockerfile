@@ -4,7 +4,7 @@ FROM eclipse-temurin:21-jdk-jammy
 
 WORKDIR /app
 
-#For Host machine run, run the following commands to perform maven build
+#For Host machine build, run the following commands to perform maven build
 #If you are using jre base image for final image output, its recommended to perform maven build on Host machine with JDK installed
 #./mvnw clean package -DskipTests
 #cp -v ./target/spring-petclinic-*.jar spring-petclinic.jar
