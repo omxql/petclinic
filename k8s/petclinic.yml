@@ -46,19 +46,7 @@ spec:
           image: docker.io/rajsomesetty/petclinic-pr:48-critical
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: mypostgres
-            - name: POSTGRES_URL
-              value: jdbc:postgresql://demo-db:5432/petclinic
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: username
-            - name: POSTGRES_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: demo-db
-                  key: password
+              value: default
             - name: SERVICE_BINDING_ROOT
               value: /bindings
             - name: SPRING_APPLICATION_JSON
