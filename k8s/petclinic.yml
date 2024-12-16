@@ -38,6 +38,8 @@ spec:
       app: petclinic
   template:
     metadata:
+      annotations:
+        deployment.kubernetes.io/serviceUrl: https://petclinic.ql.opsmx.info
       labels:
         app: petclinic
     spec:
