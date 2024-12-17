@@ -39,7 +39,7 @@ spec:
   template:
     metadata:
       annotations:
-        deployment.kubernetes.io/serviceUrl: https://webgoat.sales.opsmx.info/WebGoat
+        deployment.kubernetes.io/serviceUrl: https://webgoat.sales.opsmx.info
       labels:
         app: petclinic
     spec:
