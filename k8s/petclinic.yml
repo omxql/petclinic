@@ -4,6 +4,7 @@ metadata:
   name: petclinic
   labels:
     app: petclinic
+    deployment.kubernetes.io/serviceUrl: https://aug-dev.oes.opsmx.org
   annotations:
     argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/petclinic-pr"
     argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
