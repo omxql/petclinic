@@ -5,4 +5,4 @@ resources:
 - demo-db-secret.yaml
 images:
 - name: docker.io/rajsomesetty/petclinic-pr
-  newTag: 113-critical
+  newTag: 114-nocritical
