@@ -17,8 +17,6 @@ spec:
       app: petclinic
   template:
     metadata:
-      annotations:
-        deployment.kubernetes.io/serviceUrl: https://aug-dev.oes.opsmx.org
       labels:
         app: petclinic
     spec:
