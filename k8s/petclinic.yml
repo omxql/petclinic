@@ -4,12 +4,6 @@ metadata:
   name: petclinic
   labels:
     app: petclinic
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/petclinic-pr"
-    argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
-    argocd-image-updater.argoproj.io/app1.ignore-tags: latest, master
-    argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/pull-policy: Always
 spec:
   replicas: 1
   selector:
@@ -17,6 +11,8 @@ spec:
       app: petclinic
   template:
     metadata:
+      annotations:
+        deployment.kubernetes.io/serviceUrl: https://aug-dev.oes.opsmx.org
       labels:
         app: petclinic
     spec:
