@@ -15,7 +15,7 @@ spec:
         app: petclinic
     spec:
       containers:
-        - name: workload
+        - name: petclinic
           image: docker.io/rajsomesetty/petclinic-pr:48-critical
           env:
             - name: SPRING_PROFILES_ACTIVE
