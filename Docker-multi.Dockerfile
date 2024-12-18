@@ -9,7 +9,8 @@ COPY mvnw pom.xml ./
 COPY src ./src
 
 # Create the mvn.sh script
-RUN cat > mvn.sh <<'EOF'
+# RUN cat > mvn.sh <<'EOF'
+COPY <<-'EOF' mvn.sh
 export USR=`id -un`
 echo "Container is running as user ${USR}"
 echo "Maven cache directory is ..."
@@ -32,11 +33,17 @@ FROM bellsoft/liberica-openjre-alpine-musl:17 AS final
 #FROM openjdk:17-jdk-alpine AS final
 #FROM eclipse-temurin:21-jdk-jammy AS final
 
+ENV TZ=Asia/Kolkata
+
+RUN id -u petclinic 2>/dev/null || adduser -D petclinic
+
+USER petclinic
+
 WORKDIR /app
 
 # Copy the built JAR from the build stage
-COPY --from=build /app/spring-petclinic.jar /app/spring-petclinic.jar
-
+#COPY --chown=petclinic:petclinic --from=build /app/webgoat.jar /app/webgoat.jar
+COPY --chown=petclinic:petclinic --from=build /app/spring-petclinic.jar /app/spring-petclinic.jar
 
 ARG CACHEBUST=001
 RUN echo "Arg CACHEBUST effects change in the imageSha. CACHEBUST=$CACHEBUST"
