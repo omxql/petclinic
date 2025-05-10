@@ -4,12 +4,19 @@ kind: Service
 metadata:
   name: petclinic
 spec:
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 8080
+  type: ClusterIP
   selector:
     app: petclinic
+  ports:
+  - name: petclinic
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: admin
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+
 
 ---
 apiVersion: apps/v1
@@ -18,6 +25,12 @@ metadata:
   name: petclinic
   labels:
     app: petclinic
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: "app1=docker.io/rajsomesetty/petclinic-pr"
+    argocd-image-updater.argoproj.io/app1.update-strategy: "latest"
+    argocd-image-updater.argoproj.io/app1.ignore-tags: latest, master
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/pull-policy: Always
 spec:
   replicas: 1
   selector:
@@ -30,10 +43,22 @@ spec:
     spec:
       containers:
         - name: workload
-          image: dsyer/petclinic
+          image: docker.io/rajsomesetty/petclinic-pr:46-dev
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: postgres
+              value: mypostgres
+            - name: POSTGRES_URL
+              value: jdbc:postgresql://demo-db:5432/petclinic
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: demo-db
+                  key: username
+            - name: POSTGRES_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: demo-db
+                  key: password
             - name: SERVICE_BINDING_ROOT
               value: /bindings
             - name: SPRING_APPLICATION_JSON
@@ -46,11 +71,11 @@ spec:
               containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /livez
+              path: /actuator/health
               port: http
           readinessProbe:
             httpGet:
-              path: /readyz
+              path: /actuator/health
               port: http
           volumeMounts:
             - mountPath: /bindings/secret
